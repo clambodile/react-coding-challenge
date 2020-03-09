@@ -1,12 +1,11 @@
 import React from 'react'
 import MessageColumn from './message-column'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 
-function InfoColumn ({messages: messages}) {
+function InfoColumn ({messages, priority}) {
     return (
             <MessageColumn
         messages={messages}
+        priority={priority}
         label="Info" />
     )
 }

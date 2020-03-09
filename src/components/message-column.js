@@ -2,21 +2,19 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
-function MessageColumn ({messages: messages, label: label}) {
-    console.log(label)
-        console.log(messages)
+function MessageColumn ({messages, label, priority}) {
         return (
                 <div>
-                <Grid container spacing={2}>
+                <h3>{label} Type {priority}</h3>
+                    <p>Count: {messages.length}</p>
                 {messages.map(({message: content}, i) => (
-                        <Grid key={i} item>
+                        <Grid key={i} xs={10} item>
                         <Paper  >
                         {content}
                         </ Paper>
                         </Grid>
                 ))}
             
-            </Grid>
                 </div>
         )
 }

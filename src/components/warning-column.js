@@ -1,12 +1,11 @@
 import React from 'react'
 import MessageColumn from './message-column'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 
-function WarningColumn ({messages: messages}) {
+function WarningColumn ({messages, priority}) {
     return (
             <MessageColumn
         messages={messages}
+        priority={priority}
         label="Warning" />
     )
 }

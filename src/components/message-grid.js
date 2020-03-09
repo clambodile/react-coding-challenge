@@ -1,14 +1,10 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 import ErrorColumn from './error-column'
 import WarningColumn from './warning-column'
 import InfoColumn from './info-column'
 
 class MessageGrid extends React.PureComponent {
-    constructor(...args) {
-        super(...args)
-    }
 
     isError = message => message.priority === 1
     isWarning = message => message.priority === 2
@@ -23,10 +19,18 @@ class MessageGrid extends React.PureComponent {
 
         return (
             <div>
-                <Grid container spacing={2}>
-                <ErrorColumn messages={errors} />
-                <WarningColumn messages={warnings} />
-                <InfoColumn messages={info} />
+                <Grid item xs={12} >
+                <Grid container spacing={2} >
+                <Grid xs={4} item>
+                <ErrorColumn messages={errors} priority={1}/>
+                </Grid>
+                <Grid xs={4} item>
+                <WarningColumn messages={warnings} priority={2}/>
+                </Grid>
+                <Grid xs={4} item>
+                <InfoColumn messages={info} priority={3}/>
+                </Grid>
+                </Grid>
                 </Grid>
             </div>
         )
