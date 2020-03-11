@@ -22,13 +22,13 @@ class MessageGrid extends React.PureComponent {
                 <Grid item xs={12} >
                 <Grid container spacing={2} >
                 <Grid xs={4} item>
-                <ErrorColumn messages={errors} priority={1}/>
+                <ErrorColumn messages={errors} priority={1} clearMessage={this.props.clearMessage}/>
                 </Grid>
                 <Grid xs={4} item>
-                <WarningColumn messages={warnings} priority={2}/>
+                <WarningColumn messages={warnings} priority={2} clearMessage={this.props.clearMessage}/>
                 </Grid>
                 <Grid xs={4} item>
-                <InfoColumn messages={info} priority={3}/>
+                <InfoColumn messages={info} priority={3} clearMessage={this.props.clearMessage} />
                 </Grid>
                 </Grid>
                 </Grid>
