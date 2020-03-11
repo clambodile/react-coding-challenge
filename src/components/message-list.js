@@ -4,12 +4,14 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Api from '../api'
 import MessageGrid from './message-grid'
+import ErrorSnackbar from './error-snackbar'
 
 class MessageList extends React.PureComponent {
     constructor(...args) {
         super(...args)
         this.state = {
             messages: [],
+            showErrorSnackbar: false
         }
     }
 
@@ -25,6 +27,9 @@ class MessageList extends React.PureComponent {
 
     messageCallback(message) {
         const { messages } = this.state
+        if (message.priority === 1) {
+            this.triggerErrorSnackbar()
+        }
         this.setState({
             messages: [
                 ...messages.slice(),
@@ -32,8 +37,24 @@ class MessageList extends React.PureComponent {
             ],
         }, () => {
             // Included to support initial direction. Please remove upon completion
-            //console.log(messages.filter(m => m.priority === 1))
+            //console.log(messages)
         })
+    }
+
+    triggerErrorSnackbar = () => {
+        clearTimeout(this.state.prevTimeout)
+        this.setState({
+            showErrorSnackbar: true,
+            prevTimeout: setTimeout(this.closeErrorSnackbar, 2000)
+        })
+    }
+
+    closeErrorSnackbar = () => {
+        if (this.state.showErrorSnackbar) {
+            this.setState({
+                showErrorSnackbar: false
+            })
+        }
     }
 
     clearMessages = () =>  {
@@ -62,12 +83,13 @@ class MessageList extends React.PureComponent {
     render() {
         const isApiStarted = this.api.isStarted()
         return (
-                <div>
+                <>
                 <AppBar >
                 <Typography variant="h6">
                 Help.com Coding Challenge
             </ Typography>
                 </ AppBar>
+                <ErrorSnackbar open={this.state.showErrorSnackbar} handleClose={this.closeErrorSnackbar}/>
                 <Button
             variant="contained"
             onClick={this.toggleApi}
@@ -81,7 +103,7 @@ class MessageList extends React.PureComponent {
                 Clear
             </ Button>
                 <MessageGrid messages = {this.state.messages} clearMessage={this.clearMessage} />
-                </div>
+                </>
         )
     }
 }
