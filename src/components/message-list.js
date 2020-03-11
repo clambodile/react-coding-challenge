@@ -42,6 +42,12 @@ class MessageList extends React.PureComponent {
         })
     }
 
+    clearMessage = id => {
+        this.setState({
+            messages: this.state.messages.filter(message => message.id !== id)
+        })
+    }
+
     toggleApi = () => {
         const isApiStarted = this.api.isStarted()
         if (isApiStarted) {
@@ -74,7 +80,7 @@ class MessageList extends React.PureComponent {
                 >
                 Clear
             </ Button>
-                <MessageGrid messages = {this.state.messages} />
+                <MessageGrid messages = {this.state.messages} clearMessage={this.clearMessage} />
                 </div>
         )
     }
