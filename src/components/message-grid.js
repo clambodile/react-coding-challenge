@@ -13,12 +13,12 @@ class MessageGrid extends React.PureComponent {
 
     render() {
         const messages = this.props.messages
-        const errors = messages.filter(this.isError)
-        const warnings = messages.filter(this.isWarning)
-        const info = messages.filter(this.isInfo)
+        const errors = messages.filter(this.isError).reverse()
+        const warnings = messages.filter(this.isWarning).reverse()
+        const info = messages.filter(this.isInfo).reverse()
 
         return (
-            <div>
+            <>
                 <Grid item xs={12} >
                 <Grid container spacing={2} >
                 <Grid xs={4} item>
@@ -32,7 +32,7 @@ class MessageGrid extends React.PureComponent {
                 </Grid>
                 </Grid>
                 </Grid>
-            </div>
+            </>
         )
     }
 }
