@@ -7,9 +7,10 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 function MessageColumn ({messages, label, priority, clearMessage}) {
         return (
-                <>
+            <>
                 <h3>{label} Type {priority}</h3>
                     <p>Count: {messages.length}</p>
+                <Grid container spacing={1} height="100%">
                 {messages.map(({message: content, id}, i) => (
                         <Grid key={i} xs={10} item>
                         <SnackbarContent message={content} action={(
@@ -20,6 +21,7 @@ function MessageColumn ({messages, label, priority, clearMessage}) {
                         </Grid>
                 ))}
             
+                </ Grid>
                 </>
         )
 }

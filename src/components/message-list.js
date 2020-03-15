@@ -1,7 +1,9 @@
 import React from 'react'
+import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import { withStyles } from '@material-ui/core/styles'
 import Api from '../api'
 import MessageGrid from './message-grid'
 import ErrorSnackbar from './error-snackbar'
@@ -35,9 +37,6 @@ class MessageList extends React.PureComponent {
                 ...messages.slice(),
                 message,
             ],
-        }, () => {
-            // Included to support initial direction. Please remove upon completion
-            //console.log(messages)
         })
     }
 
@@ -84,24 +83,29 @@ class MessageList extends React.PureComponent {
         const isApiStarted = this.api.isStarted()
         return (
                 <>
-                <AppBar >
-                <Typography variant="h6">
+                <h4>
                 Help.com Coding Challenge
-            </ Typography>
-                </ AppBar>
+                </ h4>
+                <hr />
                 <ErrorSnackbar open={this.state.showErrorSnackbar} handleClose={this.closeErrorSnackbar}/>
+                <Grid spacing={2} justify="center" container>
+                <Grid item xs={1}>
                 <Button
             variant="contained"
             onClick={this.toggleApi}
                 >
-                {isApiStarted ? 'Stop Messages' : 'Start Messages'}
+                {isApiStarted ? 'Stop' : 'Start'}
             </Button>
+                </Grid>
+                <Grid item xs={1}>
                 <Button
             variant="contained"
             onClick={this.clearMessages}
                 >
                 Clear
             </ Button>
+                </Grid>
+                </Grid>
                 <MessageGrid messages = {this.state.messages} clearMessage={this.clearMessage} />
                 </>
         )
