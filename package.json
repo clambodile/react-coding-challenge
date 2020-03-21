@@ -1,7 +1,7 @@
 {
-  "name": "help.com-react-coding-challange",
+  "name": "help.com-react-coding-challenge",
   "version": "0.0.1",
-  "description": "help.com react coding challange",
+  "description": "help.com react coding challenge",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
@@ -15,7 +15,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.43",
     "chance": "^1.1.4",
-    "fsevents": "^2.1.2",
+    "fsevents": "1.2.8",
     "lodash.random": "^3.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
