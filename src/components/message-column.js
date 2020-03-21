@@ -51,7 +51,7 @@ function MessageColumn({ messages, label, priority, clearMessage }) {
                 <Button
                   size="small"
                   onClick={e => {
-                    clearMessage(id)
+                    clearMessage(id, priority)
                     e.preventDefault()
                   }}
                 >

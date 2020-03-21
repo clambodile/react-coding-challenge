@@ -9,7 +9,9 @@ class MessageList extends React.PureComponent {
   constructor(...args) {
     super(...args)
     this.state = {
-      messages: [],
+      errorMessages: [],
+      warningMessages: [],
+      infoMessages: [],
       showErrorSnackbar: false
     }
   }
@@ -25,12 +27,24 @@ class MessageList extends React.PureComponent {
   }
 
   messageCallback(message) {
-    const { messages } = this.state
+    const { errorMessages, warningMessages, infoMessages } = this.state
     if (message.priority === 1) {
       this.triggerErrorSnackbar()
     }
-    this.setState({
-      messages: [...messages.slice(), message]
+    this.setState(state => {
+      if (message.priority === 1) {
+        return {
+          errorMessages: [message, ...state.errorMessages]
+        }
+      } else if (message.priority === 2) {
+        return {
+          warningMessages: [message, ...state.warningMessages]
+        }
+      } else {
+        return {
+          infoMessages: [message, ...state.infoMessages]
+        }
+      }
     })
   }
 
@@ -52,13 +66,31 @@ class MessageList extends React.PureComponent {
 
   clearMessages = () => {
     this.setState({
-      messages: []
+      errorMessages: [],
+      warningMessages: [],
+      infoMessages: []
     })
   }
 
-  clearMessage = id => {
-    this.setState({
-      messages: this.state.messages.filter(message => message.id !== id)
+  clearMessage = (id, priority) => {
+    this.setState(state => {
+      if (priority === 1) {
+        return {
+          errorMessages: state.errorMessages.filter(
+            message => message.id !== id
+          )
+        }
+      } else if (priority === 2) {
+        return {
+          warningMessages: state.warningMessages.filter(
+            message => message.id !== id
+          )
+        }
+      } else {
+        return {
+          infoMessages: state.infoMessages.filter(message => message.id !== id)
+        }
+      }
     })
   }
 
@@ -87,7 +119,9 @@ class MessageList extends React.PureComponent {
           clearMessages={this.clearMessages}
         />
         <MessageGrid
-          messages={this.state.messages}
+          errorMessages={this.state.errorMessages}
+          warningMessages={this.state.warningMessages}
+          infoMessages={this.state.infoMessages}
           clearMessage={this.clearMessage}
         />
       </>
