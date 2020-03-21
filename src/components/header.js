@@ -11,7 +11,10 @@ const useStyles = makeStyles({
 
 function Header() {
   const styles = useStyles()
-  return <h4 className={styles.header}>Help.com Coding Challenge</h4>
+    return (<>
+            <h4 className={styles.header}>Help.com Coding Challenge</h4>
+            <hr />
+            </>)
 }
 
 export default Header

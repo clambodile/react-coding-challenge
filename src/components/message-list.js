@@ -108,7 +108,6 @@ class MessageList extends React.PureComponent {
     return (
       <>
         <Header />
-        <hr />
         <ErrorSnackbar
           open={this.state.showErrorSnackbar}
           handleClose={this.closeErrorSnackbar}
