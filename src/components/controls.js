@@ -19,6 +19,7 @@ function Controls({ toggleApi, isApiStarted, clearMessages }) {
       <Grid item xs={1}>
         <Button
           className={classes.button}
+          id="toggle"
           variant="contained"
           onClick={toggleApi}
         >
@@ -28,6 +29,7 @@ function Controls({ toggleApi, isApiStarted, clearMessages }) {
       <Grid item xs={1}>
         <Button
           className={classes.button}
+          id="clearAll"
           variant="contained"
           onClick={clearMessages}
         >

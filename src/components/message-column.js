@@ -27,7 +27,6 @@ const useStyles = makeStyles({
     backgroundColor: "#88FCA3"
   },
   label: {
-    textTransform: "capitalize",
     marginBottom: "0",
     fontWeight: 500
   }
@@ -38,17 +37,18 @@ function MessageColumn({ messages, label, priority, clearMessage }) {
   return (
     <>
       <h3 className={classes.label}>
-        {label} Type {priority}
+        {capitalizeFirstLetter(label)} Type {priority}
       </h3>
       <p className={classes.count}>Count: {messages.length}</p>
       <Grid container spacing={0} className={classes.column}>
         {messages.map(({ message: content, id }, i) => (
           <Grid key={i} item>
             <SnackbarContent
-              className={`${classes.message} ${classes[label]}`}
+              className={`${label}Message ${classes.message} ${classes[label]}`}
               message={content}
               action={
                 <Button
+                  className="clearButton"
                   size="small"
                   onClick={e => {
                     clearMessage(id, priority)
@@ -64,6 +64,10 @@ function MessageColumn({ messages, label, priority, clearMessage }) {
       </Grid>
     </>
   )
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
 export default MessageColumn

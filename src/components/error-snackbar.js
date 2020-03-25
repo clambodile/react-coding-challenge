@@ -22,6 +22,7 @@ export default function ErrorSnackbar(props) {
           vertical: "top",
           horizontal: "center"
         }}
+        id="errorSnackbar"
         ContentProps={{
           classes: {
             root: classes.snackBar
