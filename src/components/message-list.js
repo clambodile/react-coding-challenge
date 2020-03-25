@@ -27,7 +27,6 @@ class MessageList extends React.PureComponent {
   }
 
   messageCallback(message) {
-    const { errorMessages, warningMessages, infoMessages } = this.state
     if (message.priority === 1) {
       this.triggerErrorSnackbar()
     }
