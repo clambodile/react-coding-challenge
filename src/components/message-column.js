@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     width: "100%"
   },
   message: {
-    width: "100%",
+    width: "95%",
     margin: "0 5px 5px 0",
     boxSizing: "border-box",
     color: "black"
@@ -41,9 +41,9 @@ function MessageColumn({ messages, label, priority, clearMessage }) {
         {label} Type {priority}
       </h3>
       <p className={classes.count}>Count: {messages.length}</p>
-      <Grid container className={classes.column}>
+      <Grid container spacing={0} className={classes.column}>
         {messages.map(({ message: content, id }, i) => (
-          <Grid key={i} xs={12} item>
+          <Grid key={i} item>
             <SnackbarContent
               className={`${classes.message} ${classes[label]}`}
               message={content}
